@@ -1,0 +1,7 @@
+<p>
+  form works!
+</p>
+<div
+  *ngFor="let field of fields">
+  {{field}}: <input type="{{getType(field)}}" value="{{getValue(field)}}">
+</div>

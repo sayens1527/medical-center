@@ -1,0 +1,12 @@
+<p-dataTable
+  [value]="source"
+  [rows]="10"
+  #dt
+  (onRowSelected)="onRowSelected($event)"
+  selectionMode="single">
+  <p-column 
+    *ngFor="let column of columns" 
+    field={{column}}
+    header={{column}}>
+  </p-column>
+</p-dataTable>
