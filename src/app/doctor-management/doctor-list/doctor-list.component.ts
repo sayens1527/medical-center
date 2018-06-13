@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DoctorService } from '../../services/doctor.service';
+import { Doctor } from '../../model/doctor';
 
 @Component({
   selector: 'app-doctor-list',
@@ -7,12 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorListComponent implements OnInit {
 
-  doctors:any[]=[{id:"1",name:"Alx"}];
-  columns:string[]=["id","name"];
+  doctors:Doctor[];
+  columns:string[]=["id","name","salary"];
 
-  constructor() { }
+  @Output() emmiter:EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private doctorService:DoctorService) { }
 
   ngOnInit() {
+    this.doctors = this.doctorService.getAll();
+  }
+
+  onDoctorSelect(doctor){
+    this.emmiter.emit(doctor);
   }
 
 }

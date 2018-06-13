@@ -20,4 +20,7 @@ export class DataTableComponent implements OnInit {
   ngOnInit() {
   }
 
+  onRowSelect(event){
+    this.emmiter.emit(event.data);
+  }
 }

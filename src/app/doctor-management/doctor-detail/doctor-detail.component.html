@@ -1,6 +1,5 @@
-<p>
-  doctor-detail works!
-</p>
 <app-form
-  [detail]="doctor">
+  [detail]="doctor"
+  [formConfiguration]="formConfiguration"
+  (emmiter)="processEvenForm($event)">
 </app-form>

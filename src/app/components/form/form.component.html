@@ -1,7 +1,40 @@
-<p>
-  form works!
-</p>
-<div
-  *ngFor="let field of fields">
-  {{field}}: <input type="{{getType(field)}}" value="{{getValue(field)}}">
+<div class="container ui-fluid">
+
+  <form action="" [formGroup]="formGroup">
+    {{cars}}
+    <div *ngFor="let field of fields,let i=index">
+
+      <div *ngIf="getType(field) === 'dropdown'" class="form-group ui-float-label" style="padding: 0%" [ngClass]="{ 'ui-float-label': formConfiguration.floatLabel }">
+        <label *ngIf="!formConfiguration.floatLabel" for="{{getLabel(field)}}">{{getLabel(field)}}:</label>
+        <p-dropdown id="{{getLabel(field)}}" [options]="getData(field)" [(ngModel)]="values[i]" 
+        [style]="{'height':'100%','width':'100%'}" filter="true" formControlName="{{field}}">
+        </p-dropdown>
+        <label *ngIf="formConfiguration.floatLabel" for="{{getLabel(field)}}">{{getLabel(field)}}:</label>
+      </div>
+
+      <div *ngIf="getType(field) !== 'dropdown' &&  getType(field) !== 'calendar'" class="form-group" [ngClass]="{ 'ui-float-label': formConfiguration.floatLabel }">
+        <label *ngIf="!formConfiguration.floatLabel" for="{{getLabel(field)}}">{{getLabel(field)}}:</label>
+        <input id="{{getLabel(field)}}" type="{{getType(field)}}" 
+          [(ngModel)]="values[i]"  pInputText class="form-control" formControlName="{{field}}">
+        <label *ngIf="formConfiguration.floatLabel" for="{{getLabel(field)}}">{{getLabel(field)}}:</label>
+      </div>
+
+      <div *ngIf="getType(field) === 'calendar'" class="form-group" [ngClass]="{ 'ui-float-label': formConfiguration.floatLabel }">
+        <label *ngIf="!formConfiguration.floatLabel" for="{{getLabel(field)}}">{{getLabel(field)}}:</label>
+        <p-calendar [showIcon]="true" formControlName="{{field}}" [(ngModel)]="detail.startDate"></p-calendar>
+        <label *ngIf="formConfiguration.floatLabel" for="{{getLabel(field)}}">{{getLabel(field)}}:</label>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-md-4 ui-g-0">
+      </div>
+      <div class="ui-md-4 ui-g-6">
+        <button [disabled]='true' pButton type="submit" label="Guardar"></button>
+      </div>
+      <div class="ui-md-4 ui-g-6">
+        <button pButton label="Cancelar" class="ui-button-danger" (click)="cancell()"></button>
+      </div>
+    </div>
+  </form>
 </div>

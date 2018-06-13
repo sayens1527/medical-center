@@ -1,10 +1,16 @@
-<p>
-  doctor-main works!
-</p>
-
 <div>
-  <app-doctor-list></app-doctor-list>
+  <app-doctor-list
+    (emmiter)="onDoctorSelect($event)">
+  </app-doctor-list>
 </div>
+<br>
 <div>
-  <app-doctor-detail></app-doctor-detail>
+  <app-doctor-detail *ngIf="selectedDoctor"
+    [doctor]="selectedDoctor">
+</app-doctor-detail>
+</div>
+<br>
+<br>
+<div>
+  <app-new-doctor></app-new-doctor>
 </div>

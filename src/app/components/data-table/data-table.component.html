@@ -1,12 +1,16 @@
+<div class="container ui-fluid">
 <p-dataTable
   [value]="source"
   [rows]="10"
-  #dt
-  (onRowSelected)="onRowSelected($event)"
-  selectionMode="single">
+  (onRowSelect)="onRowSelect($event)"
+  selectionMode="single"
+  [paginator]="true"
+  [responsive]="true"
+  #dt>
   <p-column 
     *ngFor="let column of columns" 
     field={{column}}
     header={{column}}>
   </p-column>
 </p-dataTable>
+</div>

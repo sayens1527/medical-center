@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Doctor } from '../../model/doctor';
 
 @Component({
   selector: 'app-doctor-main',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorMainComponent implements OnInit {
 
+  selectedDoctor:Doctor;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onDoctorSelect(doctor){
+    this.selectedDoctor = doctor;
+  }
 }

@@ -1,4 +1,5 @@
 <app-data-table
   [source]="doctors"
-  [columns]="columns">
+  [columns]="columns"
+  (emmiter)="onDoctorSelect($event)">
 </app-data-table>
